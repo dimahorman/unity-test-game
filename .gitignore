@@ -1,0 +1,37 @@
+# Unity-generated files (cache, logs, temp files)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+
+# Crash reports
+MemoryCaptures/
+
+# Local settings
+*.suo
+*.user
+*.userprefs
+*.csproj
+*.pidb
+*.sln
+*.tmp
+*.swp
+*.lock
+*.log
+*.gid
+
+# Unity Plugin & Package Cache
+Packages/manifest.json
+Packages/packages-lock.json
+*.meta
+
+# JetBrains Rider / VS Code settings (optional)
+.idea/
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
