@@ -15,6 +15,7 @@ public class Managers : MonoBehaviour {
     public static ImageManager Image { get; private set; }
     public static AudioManager Audio { get; private set; }
     public static GameStateManager State { get; private set; }
+    public static MissionManager Mission { get; private set; }
     
     private List<IGameManager> _startSequence;
 
@@ -25,6 +26,7 @@ public class Managers : MonoBehaviour {
         Image = GetComponent<ImageManager>();
         Audio = GetComponent<AudioManager>();
         State = GetComponent<GameStateManager>();
+        Mission = GetComponent<MissionManager>();
         
         NetworkService network = new NetworkService();
         
@@ -35,6 +37,7 @@ public class Managers : MonoBehaviour {
         _startSequence.Add(Image);
         _startSequence.Add(Audio);
         _startSequence.Add(State);
+        _startSequence.Add(Mission);
 
         StartCoroutine(StartupManagers(network));
     }
@@ -54,10 +57,16 @@ public class Managers : MonoBehaviour {
                     numReady++;
                 }
             }
-            if (numReady > lastReady)
+
+            if (numReady > lastReady) {
                 Debug.Log("Progress: " + numReady + "/" + numModules);
+                GameEvent.ManagersProgressEvent.Invoke(numReady, numModules);
+            }
+               
             yield return null;
         }
+        
+        GameEvent.ManagersStartedEvent.Invoke();
         Debug.Log("All managers started up");
     }
 }

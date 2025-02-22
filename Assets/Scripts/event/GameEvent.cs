@@ -3,6 +3,9 @@ using System;
 using UnityEngine.Events;
 
 public static class GameEvent {
+    public static readonly UnityEvent<int, int> ManagersProgressEvent = new UnityEvent<int, int>();
+    public static readonly UnityEvent ManagersStartedEvent = new UnityEvent();
+    
     public static readonly UnityEvent<float> SpeedChangeEvent = new UnityEvent<float>();
     public static readonly UnityEvent<float> SoundChangeEvent = new UnityEvent<float>();
     
