@@ -12,6 +12,7 @@
        private void Awake() {
            GameEvent.OnSelectEventInventoryItem.AddListener(OnSelectInventoryItem);
            GameEvent.LevelCompleteEvent.AddListener(OnLevelComplete);
+           GameEvent.GameCompleteEvent.AddListener(OnGameComplete);
            GameEvent.LevelFailedEvent.AddListener(OnLevelFailed);
            GameEvent.HealthChangedEvent.AddListener(OnUpdateHealth);
        }
@@ -19,6 +20,7 @@
        private void OnDestroy() {
            GameEvent.OnSelectEventInventoryItem.RemoveListener(OnSelectInventoryItem);
            GameEvent.LevelCompleteEvent.RemoveListener(OnLevelComplete);
+           GameEvent.GameCompleteEvent.RemoveListener(OnGameComplete);
            GameEvent.LevelFailedEvent.RemoveListener(OnLevelFailed);
            GameEvent.HealthChangedEvent.RemoveListener(OnUpdateHealth);
        }
@@ -58,8 +60,21 @@
            StartCoroutine(CompleteLevel());
        }
        
+       public void OnGameComplete() {
+           levelCompleteText.text = "Game Complete!";
+           levelCompleteText.gameObject.SetActive(true);
+       }
+       
        public void OnLevelFailed() {
            StartCoroutine(HandleLevelFailed());
+       }
+
+       public void OnLoadGame() {
+           Managers.Data.LoadGameData();
+       }
+
+       public void OnSaveGame() {
+           Managers.Data.SaveGameData();
        }
 
        private IEnumerator HandleLevelFailed() {

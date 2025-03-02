@@ -18,7 +18,7 @@
             Status = ManagerStatus.Started;
         }
 
-        private void UpdateData(int health, int maxHealth) {
+        public void UpdateData(int health, int maxHealth) {
             Health = health;
             MaxHealth = maxHealth;
         }

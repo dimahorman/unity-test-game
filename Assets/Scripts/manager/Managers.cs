@@ -16,6 +16,7 @@ public class Managers : MonoBehaviour {
     public static AudioManager Audio { get; private set; }
     public static GameStateManager State { get; private set; }
     public static MissionManager Mission { get; private set; }
+    public static DataManager Data { get; private set; }
     
     private List<IGameManager> _startSequence;
 
@@ -29,6 +30,7 @@ public class Managers : MonoBehaviour {
         Audio = GetComponent<AudioManager>();
         State = GetComponent<GameStateManager>();
         Mission = GetComponent<MissionManager>();
+        Data = GetComponent<DataManager>();
         
         NetworkService network = new NetworkService();
         
@@ -40,6 +42,7 @@ public class Managers : MonoBehaviour {
         AddManagerIfExists(Audio);
         AddManagerIfExists(State);
         AddManagerIfExists(Mission);
+        AddManagerIfExists(Data);
 
         StartCoroutine(StartupManagers(network));
     }
