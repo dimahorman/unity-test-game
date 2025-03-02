@@ -12,22 +12,40 @@ public class MissionManager : MonoBehaviour, IGameManager {
     public void Startup(NetworkService networkService) {
         Debug.Log("Mission manager starting...");
         _network = networkService;
-
-        curLevel = 0;
-        maxLevel = 1;
+        
+        UpdateData(0, 1);
         
         Status = ManagerStatus.Started;
+    }
+
+    public void UpdateData(int curLevel, int maxLevel) {
+        this.curLevel = curLevel;
+        this.maxLevel = maxLevel;
     }
 
     public void GoNext() {
         if (curLevel < maxLevel) {
             curLevel++;
-            var sceneName = $"Level{curLevel}";
+            var sceneName = GetCurrentLevelName();
             Debug.Log($"Loading scene: {sceneName}");
-            SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene($"Scenes/PointAndClick/{sceneName}");
         }
         else {
             Debug.Log("Last level");
         }
      }
+
+    public void RestartCurrentLevel() {
+        var sceneName = GetCurrentLevelName();
+        
+        SceneManager.LoadScene($"Scenes/PointAndClick/{sceneName}");
+    }
+
+    public string GetCurrentLevelName() {
+        return $"Level{curLevel}";
+    }
+
+    public void ReachObjective() {
+        GameEvent.LevelCompleteEvent.Invoke();
+    }
 }

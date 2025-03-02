@@ -20,6 +20,8 @@ public class Managers : MonoBehaviour {
     private List<IGameManager> _startSequence;
 
     private void Awake() {
+        DontDestroyOnLoad(gameObject);
+        
         Player = GetComponent<PlayerManager>();
         Inventory = GetComponent<InventoryManager>();
         Weather = GetComponent<WeatherManager>();
@@ -31,15 +33,21 @@ public class Managers : MonoBehaviour {
         NetworkService network = new NetworkService();
         
         _startSequence = new List<IGameManager>();
-        _startSequence.Add(Player);
-        _startSequence.Add(Inventory);
-        _startSequence.Add(Weather);
-        _startSequence.Add(Image);
-        _startSequence.Add(Audio);
-        _startSequence.Add(State);
-        _startSequence.Add(Mission);
+        AddManagerIfExists(Player);
+        AddManagerIfExists(Inventory);
+        AddManagerIfExists(Weather);
+        AddManagerIfExists(Image);
+        AddManagerIfExists(Audio);
+        AddManagerIfExists(State);
+        AddManagerIfExists(Mission);
 
         StartCoroutine(StartupManagers(network));
+    }
+
+    private void AddManagerIfExists(IGameManager manager) {
+        if (manager != null) {
+            _startSequence.Add(manager);
+        }
     }
     
     private IEnumerator StartupManagers(NetworkService network) {

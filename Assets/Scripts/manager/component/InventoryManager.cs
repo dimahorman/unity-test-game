@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
@@ -13,6 +14,14 @@ public class InventoryManager : MonoBehaviour, IGameManager {
         Debug.Log("InventoryManager starting...");
         _items = new Dictionary<string, int>();
         Status = ManagerStatus.Started;
+    }
+
+    public void UpdateData(IDictionary<string, int> items) {
+        _items = items;
+    }
+
+    public IDictionary<string, int> GetData() {
+        return _items;
     }
 
     public bool EquipItem(string item) {
@@ -42,7 +51,12 @@ public class InventoryManager : MonoBehaviour, IGameManager {
             if (_items[name] == 0) {
                 _items.Remove(name);
             }
-            
+
+            if (name.Equals("Health")) {
+                // need a better handling for it
+                Managers.Player.ChangeHealth(1);
+            }
+
         } else {
             return false;
         }

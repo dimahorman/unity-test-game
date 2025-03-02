@@ -13,7 +13,11 @@ public static class GameEvent {
     
     public static readonly UnityEvent PauseGameEvent = new UnityEvent();
     public static readonly UnityEvent ResumeGameEvent = new UnityEvent();
+    public static readonly UnityEvent LevelCompleteEvent = new UnityEvent();
+    public static readonly UnityEvent LevelFailedEvent = new UnityEvent();
     
+    public static readonly UnityEvent<int, int> HealthChangedEvent = new UnityEvent<int, int>();
+
     public static readonly UnityEvent WeatherUpdatedEvent = new UnityEvent();
     
     // UI
