@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
 
-public class StartupController : MonoBehaviour {
+public class PointAndClickStartupController : MonoBehaviour {
     [SerializeField] private Slider _progressSlider;
 
     private void Awake() {
