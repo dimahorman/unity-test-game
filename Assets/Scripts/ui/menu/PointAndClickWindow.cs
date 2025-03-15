@@ -1,6 +1,7 @@
 
+    using ui;
     using UnityEngine;
 
-    public class PointAndClickWindow : MonoBehaviour {
+    public class PointAndClickWindow : AbstractGameUIWindow {
         
     }

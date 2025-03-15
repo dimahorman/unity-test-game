@@ -2002,6 +2002,7 @@ GameObject:
   - component: {fileID: 475503600}
   - component: {fileID: 475503601}
   - component: {fileID: 475503602}
+  - component: {fileID: 475503603}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
@@ -2084,6 +2085,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &475503603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475503597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee1787a89aa4d91a18049e1dcccdd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeSpeed: 6
 --- !u!1 &560586914
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,7 +3654,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsPopUp: {fileID: 1101650743}
   pointAndClickWindow: {fileID: 1759994237}
-  startWindow: {fileID: 475503597}
+  mainMenuPanel: {fileID: 475503603}
+  startWindow: {fileID: 475503603}
 --- !u!1 &1071668449
 GameObject:
   m_ObjectHideFlags: 0
@@ -3947,6 +3962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a758b6466e195442a2787bb3b69b2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeSpeed: 6
   speedSlider: {fileID: 2024648670}
   soundSlider: {fileID: 1294582202}
   soundToggle: {fileID: 1534802692}
@@ -8232,6 +8248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0407fad4df6d49af8cb3c64d4a540ca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeSpeed: 6
 --- !u!114 &1759994238
 MonoBehaviour:
   m_ObjectHideFlags: 0

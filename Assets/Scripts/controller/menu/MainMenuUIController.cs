@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ui;
+using ui.menu;
+using ui.settings;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,28 +11,28 @@ using UnityEngine.SceneManagement;
 public class MainMenuUIController : MonoBehaviour {
     [SerializeField] private SettingsPopUp settingsPopUp;
     [SerializeField] private PointAndClickWindow pointAndClickWindow;
+    [SerializeField] private MainMenuPanelWindow mainMenuPanel;
 
-    [SerializeField] private GameObject startWindow;
+    [SerializeField] private AbstractGameUIWindow startWindow;
 
-    private GameObject _currentWindow;
+    private AbstractGameUIWindow _currentWindow;
 
-    private readonly Stack<GameObject> _previousWindows = new();
+    private readonly Stack<AbstractGameUIWindow> _previousWindows = new();
 
     private void Start() {
-        settingsPopUp.Close();
-        pointAndClickWindow.gameObject.SetActive(false);
+        settingsPopUp.HideWindow();
+        pointAndClickWindow.HideWindow();
 
         _currentWindow = startWindow;
-
-        _currentWindow.SetActive(true);
+        _currentWindow.ShowWindow();
     }
 
     public void OnSettings() {
-        OpenNextWindow(settingsPopUp.gameObject);
+        OpenNextWindow(settingsPopUp);
     }
 
     public void OnPointAndClick() {
-        OpenNextWindow(pointAndClickWindow.gameObject);
+        OpenNextWindow(pointAndClickWindow);
     }
 
     public void OnFirstPerson() {
@@ -44,38 +47,25 @@ public class MainMenuUIController : MonoBehaviour {
     public void GoToPreviousWindow() {
         if (_previousWindows.Count > 0) {
             StartCoroutine(FadeCurrentWindow(() => {
-                _currentWindow.SetActive(false);
+                _currentWindow.HideWindow();
                 _currentWindow = _previousWindows.Pop();
-
-                _currentWindow.SetActive(true);
-                var canvasGroup = _currentWindow.GetComponent<CanvasGroup>();
-                canvasGroup.interactable = true;
-                canvasGroup.alpha = 1;
+                
+                _currentWindow.ShowWindow();
             }));
         }
     }
 
-    private void OpenNextWindow(GameObject window) {
+    private void OpenNextWindow(AbstractGameUIWindow window) {
         StartCoroutine(FadeCurrentWindow(() => {
-            _currentWindow.SetActive(false);
+            _currentWindow.HideWindow();
             _previousWindows.Push(_currentWindow);
 
             _currentWindow = window;
-            window.SetActive(true);
-            var canvasGroup = window.GetComponent<CanvasGroup>();
-            canvasGroup.alpha = 1;
-            canvasGroup.interactable = true;
+            window.ShowWindow();
         }));
     }
 
     private IEnumerator FadeCurrentWindow(Action afterFade) {
-        var canvasGroup = _currentWindow.GetComponent<CanvasGroup>();
-        canvasGroup.interactable = false;
-        while (canvasGroup.alpha > 0) {
-            canvasGroup.alpha -= Time.deltaTime * 6;
-            yield return null;
-        }
-
-        afterFade();
+        return _currentWindow.FadeWindow(afterFade);
     }
 }
