@@ -34,6 +34,14 @@ public class MainMenuUIController : MonoBehaviour {
     public void OnPointAndClick() {
         OpenNextWindow(pointAndClickWindow);
     }
+    
+    public void OnLoadPointAndClickGame() {
+        Managers.Data.LoadGameData();
+    }
+    
+    public void OnPointAndClickNewGame() {
+        Managers.Mission.GoNext();
+    }
 
     public void OnFirstPerson() {
         SceneManager.LoadScene($"Scenes/FirstPersonScene");

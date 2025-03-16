@@ -8616,7 +8616,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1058606421}
         m_TargetAssemblyTypeName: MainMenuUIController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnLoadPointAndClickGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9190,7 +9190,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1058606421}
         m_TargetAssemblyTypeName: MainMenuUIController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnPointAndClickNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
