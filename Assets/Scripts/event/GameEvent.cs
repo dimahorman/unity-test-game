@@ -1,5 +1,6 @@
 
 using System;
+using mode;
 using UnityEngine.Events;
 
 public static class GameEvent {
@@ -23,4 +24,7 @@ public static class GameEvent {
     
     // UI
     public static readonly UnityEvent<string> OnSelectEventInventoryItem = new UnityEvent<string>();
+    
+    // Game modes
+    public static readonly UnityEvent<GameMode> GameModeChangeEvent = new UnityEvent<GameMode>();
 }

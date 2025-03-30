@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using mode;
 using ui;
 using ui.menu;
 using ui.settings;
@@ -44,7 +45,7 @@ public class MainMenuUIController : MonoBehaviour {
     }
 
     public void OnFirstPerson() {
-        SceneManager.LoadScene($"Scenes/FirstPersonScene");
+        GameEvent.GameModeChangeEvent.Invoke(GameMode.FirstPersonShooter);
     }
 
     public void OnQuit() {

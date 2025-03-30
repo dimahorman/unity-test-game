@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneController : MonoBehaviour {
+public class FirstPersonSceneController : MonoBehaviour {
     [SerializeField] private GameObject enemyPrefab;
     private GameObject _enemy;
 

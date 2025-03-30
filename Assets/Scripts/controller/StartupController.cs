@@ -1,10 +1,10 @@
+using mode;
+using UnityEngine;
+using UnityEngine.UI;
 
-    using UnityEngine;
-    using UnityEngine.SceneManagement;
-    using UnityEngine.UI;
-
-    public class MainMenuStartupController : MonoBehaviour {
-        [SerializeField] private Slider _progressSlider;
+namespace controller {
+    public class StartupController : MonoBehaviour {
+        [SerializeField] private Slider progressSlider;
 
         private void Awake() {
             GameEvent.ManagersProgressEvent.AddListener(OnManagersProgress);
@@ -17,11 +17,13 @@
         }
 
         private void OnManagersStarted() {
-            SceneManager.LoadScene($"Scenes/Menu/MainMenuScene");
+            // Load Main menu when every manager has started
+            GameEvent.GameModeChangeEvent.Invoke(GameMode.MainMenu);
         }
 
         private void OnManagersProgress(int ready, int modules) {
             float progress = (float)ready / modules;
-            _progressSlider.value = progress;
+            progressSlider.value = progress;
         }
     }
+}

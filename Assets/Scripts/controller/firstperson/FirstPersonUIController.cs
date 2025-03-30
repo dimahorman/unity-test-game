@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIController : MonoBehaviour {
+public class FirstPersonUIController : MonoBehaviour {
     [SerializeField] private Text _scoreLabel;
     [SerializeField] private GameObject _settingsWindow;
     SettingsPopUp settingsPopUp;
