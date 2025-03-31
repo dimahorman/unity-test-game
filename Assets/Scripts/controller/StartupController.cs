@@ -18,7 +18,7 @@ namespace controller {
 
         private void OnManagersStarted() {
             // Load Main menu when every manager has started
-            GameEvent.GameModeChangeEvent.Invoke(GameMode.MainMenu);
+            Managers.GameMode.SwitchMode(GameMode.MainMenu);
         }
 
         private void OnManagersProgress(int ready, int modules) {

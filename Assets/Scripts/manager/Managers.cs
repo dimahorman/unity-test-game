@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using manager.component;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerManager))]
@@ -17,6 +17,7 @@ public class Managers : MonoBehaviour {
     public static GameStateManager State { get; private set; }
     public static MissionManager Mission { get; private set; }
     public static DataManager Data { get; private set; }
+    public static GameModeManager GameMode { get; private set; }
     
     private List<IGameManager> _startSequence;
 
@@ -31,6 +32,7 @@ public class Managers : MonoBehaviour {
         State = GetComponent<GameStateManager>();
         Mission = GetComponent<MissionManager>();
         Data = GetComponent<DataManager>();
+        GameMode = GetComponent<GameModeManager>();
         
         NetworkService network = new NetworkService();
         
@@ -43,6 +45,7 @@ public class Managers : MonoBehaviour {
         AddManagerIfExists(State);
         AddManagerIfExists(Mission);
         AddManagerIfExists(Data);
+        AddManagerIfExists(GameMode);
 
         StartCoroutine(StartupManagers(network));
     }

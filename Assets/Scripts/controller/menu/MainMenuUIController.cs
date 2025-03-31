@@ -45,7 +45,7 @@ public class MainMenuUIController : MonoBehaviour {
     }
 
     public void OnFirstPerson() {
-        GameEvent.GameModeChangeEvent.Invoke(GameMode.FirstPersonShooter);
+        Managers.GameMode.SwitchMode(GameMode.FirstPersonShooter);
     }
 
     public void OnQuit() {
