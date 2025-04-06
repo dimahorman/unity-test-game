@@ -6,6 +6,7 @@ namespace controller {
     public class GeneralSceneController : MonoBehaviour {
         private const string MainMenuSceneName = "MainMenuScene";
         private const string FirstPersonSceneName = "FirstPersonScene";
+        private const string PointAndClickSceneName = "PointAndClickStart";
 
         private void Awake() {
             DontDestroyOnLoad(gameObject);
@@ -26,6 +27,10 @@ namespace controller {
                 
                 case GameMode.FirstPersonShooter:
                     LoadSceneIfNotAlready(FirstPersonSceneName);
+                    break;
+                
+                case GameMode.PointAndClick:
+                    LoadSceneIfNotAlready(PointAndClickSceneName);
                     break;
             }
         }

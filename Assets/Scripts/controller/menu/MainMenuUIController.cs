@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using manager.component;
 using mode;
 using ui;
 using ui.menu;
@@ -37,11 +38,13 @@ public class MainMenuUIController : MonoBehaviour {
     }
     
     public void OnLoadPointAndClickGame() {
-        Managers.Data.LoadGameData();
+        PointAndClickStartManager.ChangeLoadingMode(PointAndClickStartManager.LoadingMode.SavedGame);
+        Managers.GameMode.SwitchMode(GameMode.PointAndClick);
     }
     
     public void OnPointAndClickNewGame() {
-        Managers.Mission.GoNext();
+        PointAndClickStartManager.ChangeLoadingMode(PointAndClickStartManager.LoadingMode.NewGame);
+        Managers.GameMode.SwitchMode(GameMode.PointAndClick);
     }
 
     public void OnFirstPerson() {
