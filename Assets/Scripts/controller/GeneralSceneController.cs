@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using mode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,23 +23,26 @@ namespace controller {
             switch (mode) {
                 // TODO Add handling for other modes as well
                 case GameMode.MainMenu: 
-                    LoadSceneIfNotAlready(MainMenuSceneName);
+                    LoadSceneIfNotAlready(MainMenuSceneName, mode);
                     break;
                 
                 case GameMode.FirstPersonShooter:
-                    LoadSceneIfNotAlready(FirstPersonSceneName);
+                    LoadSceneIfNotAlready(FirstPersonSceneName, mode);
                     break;
                 
                 case GameMode.PointAndClick:
-                    LoadSceneIfNotAlready(PointAndClickSceneName);
+                    LoadSceneIfNotAlready(PointAndClickSceneName, mode);
                     break;
             }
         }
 
-        private void LoadSceneIfNotAlready(string sceneName) {
+        private void LoadSceneIfNotAlready(string sceneName, GameMode mode) {
             if (SceneExists(sceneName) && !IsSceneActive(sceneName)) {
                 Debug.Log("SCENE LOADING");
-                SceneManager.LoadScene(sceneName);    
+                GeneralSceneLoader.Instance.LoadScene(sceneName, () => {GameEvent.GameModeSwitchUIEvent.Invoke(mode);});    
+            }
+            else {
+                GameEvent.GameModeSwitchUIEvent.Invoke(mode);
             }
         }
         

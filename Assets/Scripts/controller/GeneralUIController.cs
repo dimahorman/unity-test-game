@@ -1,11 +1,12 @@
-using System;
 using mode;
+using ui;
 using UnityEngine;
 
 namespace controller {
     public class GeneralUIController : MonoBehaviour {
 
         [SerializeField] private GameObject loadingCanvas;
+        private LoadingUI _loadingUI;
         
         [SerializeField] private GameObject mainMenuCanvas;
 
@@ -15,13 +16,12 @@ namespace controller {
         
         [SerializeField] private GameObject pointAndClickCanvas;
         
-        private void Awake() {
-            GameEvent.GameModeChangeEvent.AddListener(OnChangeGameMode);
+        private void Awake() { 
+            GameEvent.GameModeSwitchUIEvent.AddListener(OnChangeGameModeUI);
         }
-
+        
         private void Start() {
-            loadingCanvas.SetActive(true);
-                    
+            loadingCanvas.SetActive(false);
             mainMenuCanvas.SetActive(false);
             inGameMenuCommonCanvas.SetActive(false);
             firstPersonCanvas.SetActive(false);
@@ -29,18 +29,19 @@ namespace controller {
         }
 
         private void OnDestroy() {
-            GameEvent.GameModeChangeEvent.RemoveListener(OnChangeGameMode);
+            GameEvent.GameModeSwitchUIEvent.RemoveListener(OnChangeGameModeUI);
         }
 
-        private void OnChangeGameMode(GameMode mode) {
+        private void OnChangeGameModeUI(GameMode mode) {
             switch (mode) {
                 case GameMode.Loading:
+                    Debug.Log("Switching to Loading UI...");
                     loadingCanvas.SetActive(true);
                     
                     mainMenuCanvas.SetActive(false);
                     inGameMenuCommonCanvas.SetActive(false);
                     firstPersonCanvas.SetActive(false);
-                    pointAndClickCanvas.SetActive(false);
+                    pointAndClickCanvas.SetActive(false); 
                     break; 
                 case GameMode.MainMenu:
                     mainMenuCanvas.SetActive(true);

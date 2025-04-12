@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartupScene.unity
     guid: 86ef2b7a2f240974b8ae4dbd5d168477
+  - enabled: 1
+    path: Assets/Scenes/PointAndClick/PointAndClickStart.unity
+    guid: 31567a3d7ff627a4fa69d306be10cb09
   m_configObjects: {}

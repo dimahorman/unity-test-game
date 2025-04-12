@@ -4,6 +4,7 @@ using mode;
 using UnityEngine.Events;
 
 public static class GameEvent {
+    public static readonly UnityEvent ManagersLaunchBeginEvent = new UnityEvent();
     public static readonly UnityEvent<int, int> ManagersProgressEvent = new UnityEvent<int, int>();
     public static readonly UnityEvent ManagersStartedEvent = new UnityEvent();
     
@@ -27,4 +28,15 @@ public static class GameEvent {
     
     // Game modes
     public static readonly UnityEvent<GameMode> GameModeChangeEvent = new UnityEvent<GameMode>();
+    public static readonly UnityEvent<GameMode> GameModeSwitchUIEvent = new UnityEvent<GameMode>();
+    
+    
+    // Scene 
+    public static readonly UnityEvent OnSceneLoadingStarted = new UnityEvent();
+    public static readonly UnityEvent<float> OnSceneLoadingProgress = new UnityEvent<float>();
+    public static readonly UnityEvent OnSceneLoadingFinished = new UnityEvent();
+    
+    
+    
+    
 }

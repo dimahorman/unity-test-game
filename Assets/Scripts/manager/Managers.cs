@@ -57,6 +57,7 @@ public class Managers : MonoBehaviour {
     }
     
     private IEnumerator StartupManagers(NetworkService network) {
+        GameEvent.ManagersLaunchBeginEvent.Invoke();
         foreach (IGameManager manager in _startSequence) {
             manager.Startup(network);
         }
